@@ -1,6 +1,7 @@
 let express = require ('express');
 let morgan = require ('morgan');
 let mongoose = require('mongoose');
+let uuid = require("uuid4");
 
 let app = express();
 let bodyParser = require( "body-parser" );
@@ -35,27 +36,32 @@ app.get( '/blog-posts', ( req, res, next ) => {
 });
 
 app.post('/blog-posts', jsonParser, (req, res, next) => {
-     let {title, content, author, date, id} = req.body;
-     if(!title || !content || !date || !id){
-         res.statusMessage = "Missing field in body";
-         return res.status(406).json({
-            "error" : "Missing field",
-            "status" : 406
+    let title = req.body.title;
+    let content = req.body.content;
+    let author = req.body.author;
+    let publishDate = req.body.publishDate;
+
+    if(!title | !content | !author | !publishDate){
+        res.statusMessage = "Missing field in body";
+        return res.status(406).json({
+            message: "Missing field in body",
+            status: 406
         });
-     }
+    }
+
      let newBlog = {
-         title,
-         content,
-         author,
-         date,
-         id
+        id: uuid(),
+        title: title,
+        content: content,
+        author: author,
+        publishDate: publishDate
      };
      BlogList.post(newBlog)
         .then(blog => {
             res.status(201).json(blog);
         })
         .catch(err => {
-            res.statusMessage = "Missing field in body";
+            res.statusMessage = "Something went wrong with the data base";
             return res.status(500).json({
                 "error" : "Something went wrong with the data base",
                 "status" : 500
