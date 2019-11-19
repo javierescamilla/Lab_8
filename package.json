@@ -4,7 +4,7 @@
   "description": "Lab 8",
   "main": "server-blog-javier.js",
   "scripts": {
-    "test": "node server-blog-javier.js"
+    "start": "node server-blog-javier.js"
   },
   "repository": {
     "type": "git",
