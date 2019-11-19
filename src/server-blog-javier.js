@@ -92,7 +92,9 @@ app.put('/blog-posts/:id', jsonParser, (req, res, next) => {
 });
 
 app.delete('/blog-posts/:id', (req, res) => {
+    console.log("Entra delete")
     let filterID = req.params.id;
+    console.log(filterID)
     if(!filterID){
         res.statusMessage = "Missing field id";
         return res.status(406).json({

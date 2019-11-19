@@ -52,6 +52,7 @@ function post(opts) {
 }
 
 function myDelete(deletedId){
+    console.log("Entra myDelete")
     fetch('/blog-posts/' + deletedId, {
         headers: {
             'Accept': 'application/json',
