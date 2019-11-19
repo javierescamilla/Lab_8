@@ -70,6 +70,9 @@ function myDelete(deletedId){
         $("#myTable tr").remove();
         showTcs()
     })
+    .catch( err => {
+        console.log( err );
+    });
 }
 
 function update(deletedId, form){
