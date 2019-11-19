@@ -29,6 +29,24 @@ let BlogList = {
                 .catch( err=> {
                     throw Error(err);   
                 });
+    },
+    put : function(filer, updatedInfo){
+        return Blog.updateOne(filer, updatedInfo)
+                .then( blog => {
+                    return blog;
+                })
+                .catch( err=> {
+                    throw Error(err);   
+                });
+    },
+    delete :  function(filter){
+        return Blog.deleteOne(filter)
+            .then( blog => {
+                return blog;
+            })
+            .catch( err=> {
+                throw Error(err);   
+            });
     }
 }
 
