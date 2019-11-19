@@ -36,6 +36,7 @@ app.get( '/blog-posts', ( req, res, next ) => {
 });
 
 app.post('/blog-posts', jsonParser, (req, res, next) => {
+    console.log("Entra post")
     let title = req.body.title;
     let content = req.body.content;
     let author = req.body.author;
@@ -70,6 +71,7 @@ app.post('/blog-posts', jsonParser, (req, res, next) => {
 });
 
 app.put('/blog-posts/:id', jsonParser, (req, res, next) => {
+    console.log("Entra put")
     let filterID = req.params.id;
     if(!filterID || !req.body){
         res.statusMessage = "Missing field id";
