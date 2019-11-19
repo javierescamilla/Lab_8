@@ -6,7 +6,6 @@ let uuid = require("uuid4");
 let app = express();
 let bodyParser = require( "body-parser" );
 let jsonParser = bodyParser.json();
-// let bcrypt = require("bcryptjs");
 
 let {BlogList} = require('./blog-post-model');
 let {DATABASE_URL, PORT} = require('./config');
@@ -106,7 +105,7 @@ app.delete('/blog-posts/:id', (req, res) => {
            res.status(201).json(blog);
        })
        .catch(err => {
-           res.statusMessage = "Missing field in body";
+           res.statusMessage = "Something went wrong with the data base";
            return res.status(500).json({
                "error" : "Something went wrong with the data base",
                "status" : 500
